@@ -17,7 +17,7 @@
 */
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
+import {ShoppingCart} from "@material-ui/icons";
 import Add from "@material-ui/icons/Add";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import BubbleChart from "@material-ui/icons/BubbleChart";
@@ -28,7 +28,7 @@ import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
-import TableList from "views/TableList/TableList.js";
+import TableList from "views/OrderList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Icons from "views/Icons/Icons.js";
 import Maps from "views/Maps/Maps.js";
@@ -36,6 +36,8 @@ import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.js";
+import Users from "./views/users/Users";
+import Products from "./views/Products/Products";
 
 const dashboardRoutes = [
   {
@@ -60,6 +62,22 @@ const dashboardRoutes = [
     rtlName: "قائمة الجدول",
     icon: ShoppingCart,
     component: TableList,
+    layout: "/admin"
+  },
+  {
+    path: "/users",
+    name: "User List",
+    rtlName: "قائمة الجدول",
+    icon: ShoppingCart,
+    component: Users,
+    layout: "/admin"
+  },
+  {
+    path: "/products",
+    name: "Product List",
+    rtlName: "قائمة الجدول",
+    icon: ShoppingCart,
+    component: Products,
     layout: "/admin"
   },
   // {

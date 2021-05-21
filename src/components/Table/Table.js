@@ -35,7 +35,32 @@ export default function CustomTable(props) {
           </TableHead>
         ) : null}
         <TableBody>
+
           {tableData.map((prop, key) => {
+            return ( <TableRow  className={classes.tableBodyRow}>
+
+              <TableCell key={key} className={classes.tableCell} >
+                {prop?.id}
+              </TableCell>
+
+              <TableCell key={key} className={classes.tableCell} >
+                {prop?.name}
+              </TableCell>
+
+              <TableCell key={key} className={classes.tableCell} >
+                {prop?.email}
+              </TableCell>
+
+              <TableCell key={key} className={classes.tableCell} >
+                {prop?.phone_number}
+              </TableCell>
+
+
+
+            </TableRow>  );
+          })}
+
+         {/* {tableData.map((prop, key) => {
             return (
               <TableRow key={key} className={classes.tableBodyRow}>
                 {prop.map((prop, key) => {
@@ -47,7 +72,7 @@ export default function CustomTable(props) {
                 })}
               </TableRow>
             );
-          })}
+          })}*/}
         </TableBody>
       </Table>
     </div>

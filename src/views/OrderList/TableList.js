@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import Table from "components/Table/Table.js";
+
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import axios from "axios";
+import Table from "views/OrderList/Table";
 
 const styles = {
   cardCategoryWhite: {
@@ -43,6 +45,20 @@ const useStyles = makeStyles(styles);
 
 export default function TableList() {
   const classes = useStyles();
+
+  const [data,setData] = useState([])
+
+  useEffect(()=>{
+
+      axios.get('https://live.allgame365.online/orders',{}).then((res)=>{
+          console.log(res.data)
+          setData(res.data.items)
+      }).catch((err)=>{
+          console.log(err)
+      })
+
+  },[])
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
@@ -56,21 +72,8 @@ export default function TableList() {
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["ID", "Name", "Product", "Address"]}
-              tableData={[
-                  ["1", "Dakota Rice", "Half sleeve t-shirt", "Mirpur - 2, House - 28, Road - 24"],
-                  ["2", "Minerva Hooper", "Denim Pant", "Dhanmondi - 27, House - 44, Road - 15"],
-                  ["3", "Sage Rodriguez", " School bag", "Mirpur - 2, House - 515, Road - 11"],
-                  ["4", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["5", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["6", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["7", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["8", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["9", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["10", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["11", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"],
-                  ["12", "Philip Chaney", "Formal Shirt", "Gulshan, House - 621, Road - 31"]
-              ]}
+              tableHead={["ID", "Order Id", "User ID", "Product Id" , "Quantity" , "Status"]}
+              tableData={data}
             />
           </CardBody>
         </Card>
